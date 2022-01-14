@@ -1,25 +1,46 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react'
+import LoginSignUpPage from './LoginSignUpPage';
+import StartPage from './StartPage'
+// import {Box} from 'drei'
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [loginAnchorEl, setLoginAnchorEl] = useState(null);
+  const [signUpAnchorEl, setSignUpAnchorEl] = useState(null);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    fetch("/me")
+    .then((res) => {
+      if (res.ok) {
+        res.json()
+        .then((user) => setUser(user))
+      }
+    })
+  }, [])
+
+  function handleLoginClick(event){
+    console.log('Login')
+    setLoginAnchorEl(event.currentTarget)
 }
 
+function handleSignUpClick(event){
+    setSignUpAnchorEl(event.currentTarget)
+    console.log('Signup')
+}
+
+  return (
+    <>
+    <StartPage />
+    {/* <LoginSignUpPage handleSignUpClick={handleSignUpClick} handleLoginClick={handleLoginClick}  setLoginAnchorEl={setLoginAnchorEl} setSignUpAnchorEl={setSignUpAnchorEl} loginAnchorEl={loginAnchorEl} signUpAnchorEl={signUpAnchorEl} setUser={setUser} /> */}
+    </>
+  )
+}
+ 
+  
+
 export default App;
+
+        
