@@ -23,7 +23,7 @@ export default function LoginSignupPage({handleLoginClick, handleSignUpClick, se
         <Button onClick={handleSignUpClick} style={{backgroundColor: '#F8E9FE', color: 'black'}} variant='contained'>SignUp</Button>
         </Stack>
         <LoginForm loginAnchorEl={loginAnchorEl} handleLoginClose={handleLoginClose} setUser={setUser}/>
-        <SignUpForm signUpAnchorEl={signUpAnchorEl} handleSignUpClose={handleSignUpClose} setUser= {setUser}/>
+        <SignUpForm signUpAnchorEl={signUpAnchorEl} handleSignUpClose={handleSignUpClose} setUser={setUser}/>
         </div>
     )
 }

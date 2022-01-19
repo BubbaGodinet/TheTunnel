@@ -4,13 +4,21 @@ import './index.css';
 import './App.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-
+import { ScoreProvider } from './context/scoreState'
+import { UserScoresProvider } from './context/userscoreState'
+import { HitProvider } from './context/hitState'
 
 
 ReactDOM.render(
+    <HitProvider>
+    <ScoreProvider>
+    <UserScoresProvider>
     <BrowserRouter>
       <App />
-    </BrowserRouter>,
+    </BrowserRouter>
+    </UserScoresProvider>
+    </ScoreProvider>
+    </HitProvider>,
   document.getElementById('root')
 );
 

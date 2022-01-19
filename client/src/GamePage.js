@@ -9,12 +9,19 @@ import Enemies from './Enemies';
 import Tunnel from './Tunnel'
 import {MeshWobbleMaterial} from '@react-three/drei'
 import {useGLTF} from '@react-three/drei'
+import {ScoreContext} from './context/scoreState'
+import {UserScoresContext} from './context/userscoreState'
+import { useNavigate } from "react-router-dom";
+// import {HitContext} from './context/hitState'
+// import HitPopover from './HitPopover'
 // import {Box} from 'drei'
 
+export default function GamePage({user}) {
+  const {userScores, setUserScores} = useContext(UserScoresContext)
+  const {score, setScore} = useContext(ScoreContext)
+  let navigate = useNavigate();
+  // const {hit, setHit} = useContext(HitContext)
 
-
-export default function GamePage() {
- 
   const Ship = () => {
     const { viewport } = useThree()
     const group = useRef()
@@ -27,9 +34,8 @@ export default function GamePage() {
       let xp
       let yp
       let zp
-      // const contacted = cubeField.map(cube =>{ if(Math.sqrt(Math.pow(cube.props.position[0] - group.current.position.x, 2) + Math.pow(cube.props.position[1] - group.current.position.y, 2) + Math.pow(cube.props.position[2] - group.current.position.z,2)) < 5) {console.log('hit')}})
       
-     
+      // const contacted = cubeField.map(cube =>{ if(Math.sqrt(Math.pow(cube.props.position[0] - group.current.position.x, 2) + Math.pow(cube.props.position[1] - group.current.position.y, 2) + Math.pow(cube.props.position[2] - group.current.position.z,2)) < 5) {console.log('hit')}})
       // if (contacted < 10000){console.log('hit')}
       // console.log(group.current.position.x)
       // group.current.rotation.set(-y, x, 0)
@@ -52,10 +58,36 @@ export default function GamePage() {
   const SpinningMesh = ({position, rotation, scale, args, color}) => {
     // const [ref] = useBox(() => ({mass:10, position, args}))
     const mesh = useRef(null)
+    let scores = 0
+    
       useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.2))
       useFrame(() => {mesh.current.position.z += 0.9 });
+      useFrame(() => scores += 1)
+    //   useFrame(() => 
+    //   if( mesh.current.position.x > window.innerWidth && mesh.current.position.x < 0 && mesh.current.position.y > window.innerHeight && mesh.current.position.y < 0 mesh.current.position.z > window.innerHeight && mesh.current.position.z < 0 ) {
+
+    // })
+    // let hits = 0;
       return (
-      <mesh onPointerOver={() => {if (mesh.current.position.z <= 3 && mesh.current.position.z >= -10) {console.log('hit')}}} castShadow position={position} rotation={rotation} scale={scale} ref={mesh} >
+      <mesh onPointerOver={(event) => {if (mesh.current.position.z <= 3 && mesh.current.position.z >= -10) {
+      console.log('hit')
+      // hits += 1
+      // console.log(hits)
+      // if (hits === 3) {  
+      // navigate('/gameover', {replace: true})
+      // setScore(scores)
+      
+      // fetch('/scores', {
+      //   method: 'Post',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({score: scores, user_id: user.id})
+      // })
+    
+      // .then((r) => r.json())
+      // .then((newScore) => setUserScores([...userScores, newScore]))
+      }}} castShadow position={position} rotation={rotation} scale={scale} ref={mesh} >
             <boxBufferGeometry args={args} attach='geometry' />
             <MeshWobbleMaterial attach='material' color={color} />
      </mesh>
@@ -66,12 +98,13 @@ export default function GamePage() {
 
     
     let cubes =[]
-    for (let i = 0; i < 700; i++) {
+    for (let i = 0; i < 1700; i++) {
       cubes.push(i)
     }
     
     const cubeField = cubes.map(cube => <SpinningMesh color={Math.random() * 0xffffff} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 600]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 1,  Math.random() + 1,  Math.random() + 1]}/>)
-    
+   
+  
   return (
     <>
     <Canvas style={{ background: "black" }}
@@ -97,8 +130,7 @@ export default function GamePage() {
       <pointLight position={[0,-10,0]} intensity={1.5}/>
       <Terrain/>
       <Stars/>
-      
-      <Physics>
+      {/* <HitPopover setHit={setHit} hit={hit}/> */}
       <group>
         <mesh 
         receiveShadow
@@ -107,12 +139,11 @@ export default function GamePage() {
           <shadowMaterial attach='material' opacity={0.3}/>
         </mesh>
         <Suspense fallback={null}>
-          {/* <Tunnel/> */}
+          <Tunnel/>
           <Ship/>
           {cubeField}
         </Suspense>
       </group>
-      </Physics>
     </Canvas>
     </>
   );

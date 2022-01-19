@@ -9,6 +9,7 @@
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
+    "@material-ui/core": "^5.0.0-beta.5",
     "@mui/icons-material": "^5.2.5",
     "@mui/material": "^5.2.8",
     "@mui/styled-engine-sc": "^5.1.0",
@@ -25,6 +26,7 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.3",
     "react-spring": "^9.4.2",
+    "react-window": "^1.8.6",
     "recoil": "^0.5.2",
     "styled-components": "^5.3.3",
     "three": "^0.136.0",
