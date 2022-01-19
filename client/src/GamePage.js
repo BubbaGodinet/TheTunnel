@@ -63,6 +63,7 @@ export default function GamePage({user}) {
       useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.2))
       useFrame(() => {mesh.current.position.z += 0.9 });
       useFrame(() => scores += 1)
+     
     //   useFrame(() => 
     //   if( mesh.current.position.x > window.innerWidth && mesh.current.position.x < 0 && mesh.current.position.y > window.innerHeight && mesh.current.position.y < 0 mesh.current.position.z > window.innerHeight && mesh.current.position.z < 0 ) {
 
@@ -71,6 +72,7 @@ export default function GamePage({user}) {
       return (
       <mesh onPointerOver={(event) => {if (mesh.current.position.z <= 3 && mesh.current.position.z >= -10) {
       console.log('hit')
+      console.log(mesh.current.position.z)
       // hits += 1
       // console.log(hits)
       // if (hits === 3) {  
@@ -98,12 +100,12 @@ export default function GamePage({user}) {
 
     
     let cubes =[]
-    for (let i = 0; i < 1700; i++) {
+    for (let i = 0; i < 1000; i++) {
       cubes.push(i)
     }
+
+     const cubeField = cubes.map(cube => <SpinningMesh color={Math.random() * 0xffffff} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 1000]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 1,  Math.random() + 1,  Math.random() + 1]}/>)
     
-    const cubeField = cubes.map(cube => <SpinningMesh color={Math.random() * 0xffffff} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 600]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 1,  Math.random() + 1,  Math.random() + 1]}/>)
-   
   
   return (
     <>
@@ -129,7 +131,7 @@ export default function GamePage({user}) {
       <pointLight position={[-10,0,-20]} intensity={0.5}/>
       <pointLight position={[0,-10,0]} intensity={1.5}/>
       <Terrain/>
-      <Stars/>
+      {/* <Stars/> */}
       {/* <HitPopover setHit={setHit} hit={hit}/> */}
       <group>
         <mesh 
