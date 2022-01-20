@@ -40,13 +40,13 @@ export default function GamePage({user}) {
       // console.log(group.current.position.x)
       // group.current.rotation.set(-y, x, 0)
     })
-    
     // if( Math.sqrt(Math.pow(cube.props.position[0] - group.current.position.x, 2) + Math.pow(cube.props.position[1] - group.current.position.y, 2) + Math.pow(cube.props.position[2] - group.current.position.z +=0.4,2)) < 5) {console.log('hit')}
+    
     return (
       <group rotation={[0,9.45,0]} ref={group} dispose={null}>
          <mesh geometry={nodes.Cube005.geometry} material={materials.Mat0} />
          <mesh geometry={nodes.Cube005_1.geometry} material={materials.Mat1} />
-         <mesh geometry={nodes.Cube005_2.geometry} material={materials.Mat2} />
+         <mesh geometry={nodes.Cube005_2.geometry} material={materials.Mat2}/>
          <mesh geometry={nodes.Cube005_3.geometry} material={materials.Window_Frame} />
          <mesh geometry={nodes.Cube005_4.geometry} material={materials.Mat4} />
          <mesh geometry={nodes.Cube005_5.geometry} material={materials.Mat3} />
@@ -54,7 +54,7 @@ export default function GamePage({user}) {
       </group>
     )
   }
-
+  
   const SpinningMesh = ({position, rotation, scale, args, color}) => {
     // const [ref] = useBox(() => ({mass:10, position, args}))
     const mesh = useRef(null)
@@ -62,7 +62,7 @@ export default function GamePage({user}) {
     
       useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.2))
       useFrame(() => {mesh.current.position.z += 0.9 });
-      useFrame(() => scores += 1)
+      useFrame(() => scores += .5)
      
     //   useFrame(() => 
     //   if( mesh.current.position.x > window.innerWidth && mesh.current.position.x < 0 && mesh.current.position.y > window.innerHeight && mesh.current.position.y < 0 mesh.current.position.z > window.innerHeight && mesh.current.position.z < 0 ) {
@@ -76,8 +76,8 @@ export default function GamePage({user}) {
       // hits += 1
       // console.log(hits)
       // if (hits === 3) {  
-      // navigate('/gameover', {replace: true})
-      // setScore(scores)
+      navigate('/gameover', {replace: true})
+      setScore(scores)
       
       // fetch('/scores', {
       //   method: 'Post',
@@ -96,17 +96,64 @@ export default function GamePage({user}) {
       )
     }
   
+    const Mesh = ({position, rotation, scale, args, color}) => {
+      // const [ref] = useBox(() => ({mass:10, position, args}))
+      const mesh = useRef(null)
+      let scores = 0
+    
+        useFrame(() => {mesh.current.position.z += 0.9 });
+        useFrame(() => scores += .5)
+       
+      //   useFrame(() => 
+      //   if( mesh.current.position.x > window.innerWidth && mesh.current.position.x < 0 && mesh.current.position.y > window.innerHeight && mesh.current.position.y < 0 mesh.current.position.z > window.innerHeight && mesh.current.position.z < 0 ) {
+  
+      // })
+      // let hits = 0;
+        return (
+        <mesh onPointerOver={(event) => {if (mesh.current.position.z <= 3 && mesh.current.position.z >= -10) {
+        console.log('hit')
+        console.log(mesh.current.position.z)
+        // hits += 1
+        // console.log(hits)
+        // if (hits === 3) {  
+        navigate('/gameover', {replace: true})
+        setScore(scores)
+        
+        // fetch('/scores', {
+        //   method: 'Post',
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //   },
+        //   body: JSON.stringify({score: scores, user_id: user.id})
+        // })
+      
+        // .then((r) => r.json())
+        // .then((newScore) => setUserScores([...userScores, newScore]))
+        }}} castShadow position={position} rotation={rotation} scale={scale} ref={mesh} >
+              <boxBufferGeometry args={args} attach='geometry' />
+              <MeshWobbleMaterial attach='material' color={color} />
+       </mesh>
+        )
+      }
   useGLTF.preload('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/low-poly-spaceship/model.gltf')
 
     
     let cubes =[]
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < 500; i++) {
       cubes.push(i)
     }
 
-     const cubeField = cubes.map(cube => <SpinningMesh color={Math.random() * 0xffffff} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 1000]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 1,  Math.random() + 1,  Math.random() + 1]}/>)
-    
-  
+    let cubesPlus =[]
+    for (let i = 0; i < 1000; i++) {
+      cubesPlus.push(i)
+    }
+
+     const cubeField = cubes.map(cube => <Mesh color={Math.random() * 0xffffff} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 1000]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 3,  Math.random() + 3,  Math.random() + 3]}/>)
+     const cubeField2 = cubes.map(cube => <SpinningMesh color={Math.random() * 0xffffff} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 3000]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 3,  Math.random() + 3,  Math.random() + 3]}/>)
+     const cubeField3 = cubes.map(cube => <SpinningMesh color={Math.random() * 0xffffff} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 5000]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 3.5,  Math.random() + 3.5,  Math.random() + 3.5]}/>)
+     const cubeField4 = cubesPlus.map(cube => <SpinningMesh color={Math.random() * 0xffffff} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 5000]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 1.5,  Math.random() + 1.5,  Math.random() + 1.5]}/>)
+
+     
   return (
     <>
     <Canvas style={{ background: "black" }}
@@ -144,6 +191,9 @@ export default function GamePage({user}) {
           <Tunnel/>
           <Ship/>
           {cubeField}
+          {cubeField2}
+          {cubeField3}
+          {cubeField4}
         </Suspense>
       </group>
     </Canvas>

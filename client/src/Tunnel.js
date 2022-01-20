@@ -6,7 +6,7 @@ import { useFrame } from "react-three-fiber";
 export default function Tunnel() {
   const tunnel = useRef()
   useFrame(() => {
-    tunnel.current.position.z += 0.4;
+    tunnel.current.position.z += 0.8;
   });
   // Create a curve based on the points
   const [curve] = useState(() => {
@@ -20,7 +20,7 @@ export default function Tunnel() {
   const texture = useLoader(THREE.TextureLoader, "./Stylized_Crystal.jpg")
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
-  texture.repeat.set(5000, 5);
+  texture.repeat.set(2000, 5);
   texture.anisotropy = 16;
 
   return (
