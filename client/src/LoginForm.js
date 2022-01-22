@@ -27,14 +27,10 @@ export default function LoginForm({loginAnchorEl, handleLoginClose, setUser}){
         .then((res) => {
           if (res.ok) {
             res.json()
-            .then((user) => {
-              setUser(user)
-            })
+            .then((user) => setUser(user))
           } else {
             res.json()
-            .then ((errors) => {
-              console.error(errors)
-            })
+            .then ((errors) => console.error(errors))
           }
         })
         // console.log(e.target.value)

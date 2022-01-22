@@ -19,8 +19,7 @@ function App() {
     fetch("/me")
     .then((res) => {
       if (res.ok) {
-        res.json()
-        .then((user) => setUser(user))
+        res.json().then((user) => setUser(user))
       }
     })
   }, [])
@@ -40,7 +39,7 @@ function handleSignUpClick(event){
     <>
     <Routes>
       <Route path='/gameover' element={<GameOver />}/>
-      <Route path='/start' element={<StartPage setUser={setUser} user={user} />}/>
+      {/* <Route path='/start' element={<StartPage setUser={setUser} user={user} />}/> */}
       <Route path='/scoreBoard' element={<ScoreBoard />}/>
       <Route path='/game' element={<GamePage user={user} />}/>
       <Route path='/' element={user ? <StartPage /> : <LoginSignUpPage handleSignUpClick={handleSignUpClick} handleLoginClick={handleLoginClick}  setLoginAnchorEl={setLoginAnchorEl} setSignUpAnchorEl={setSignUpAnchorEl} loginAnchorEl={loginAnchorEl} signUpAnchorEl={signUpAnchorEl} setUser={setUser} />}/>

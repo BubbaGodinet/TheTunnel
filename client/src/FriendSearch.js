@@ -53,9 +53,6 @@ export default function FriendSearch(){
     
     
     const [searchAnchorEl, setSearchAnchorEl] =useState(null);
-    // const handleClick = (event) => {
-    //     setSearchAnchorEl(event.currentTarget);
-    //   };
 
       function handleKeyDown(e){
         if (e.key === 'Enter') {
@@ -81,11 +78,11 @@ export default function FriendSearch(){
     return (
         <>
         <div >
-            <Search value={search} onKeyDown={handleKeyDown}  variant='outlined' style={{color: 'pink', border: '1px solid pink'}} onChange={(e) => setSearch(e.target.value)}>
+            <Search value={search} onKeyDown={handleKeyDown}  variant='outlined' style={{color: '#F8E9FE', border: '1px solid #F8E9FE', position: 'absolute', bottom: '20px'}} onChange={(e) => setSearch(e.target.value)}>
             <SearchIconWrapper>
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+              placeholder="Find Friends..."
               inputProps={{ 'aria-label': 'search' }}
             />
             </Search>

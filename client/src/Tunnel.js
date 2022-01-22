@@ -8,6 +8,7 @@ export default function Tunnel() {
   useFrame(() => {
     tunnel.current.position.z += 0.8;
   });
+  
   // Create a curve based on the points
   const [curve] = useState(() => {
     // Create an empty array to stores the points

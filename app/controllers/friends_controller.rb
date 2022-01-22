@@ -5,7 +5,7 @@ class FriendsController < ApplicationController
     end
 
     def create 
-        friend = Friend.create(friender_id: @current_user.id, friendee_id: friends_params)
+        friend = @current_user.friendee_relationships.create(friends_params)
         render json: friend, status: :created
     end
 

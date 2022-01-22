@@ -15,20 +15,7 @@ export default function GameOver() {
     console.log(score)
     return (
       <>
-      <Box
-        sx={{
-          height: 300,
-          flexGrow: 1,
-          minWidth: 300,
-          transform: 'translateZ(0)',
-          // The position fixed scoping doesn't work in IE11.
-          // Disable this demo to preserve the others.
-          '@media all and (-ms-high-contrast: none)': {
-            display: 'none',
-          },
-        }}
-        ref={rootRef}
-      >
+      
         <Modal
         //   disablePortal
           disableEnforceFocus
@@ -64,12 +51,15 @@ export default function GameOver() {
                 <br/>
               Would you like to play again?
                 <br/>
-              <Button as={Link} to={`/game`} style={{textDecoration: 'none', backgroundColor: 'pink'}} variant='contained'> Play Again </Button>
+                <br/>
+              <Button as={Link} to={`/game`} style={{textDecoration: 'none', backgroundColor: '#F8E9FE'}} variant='contained'> Play Again </Button>
+              <Button as={Link} to={`/start`} style={{textDecoration: 'none', backgroundColor: '#F8E9FE', marginLeft: '63px'}} variant='contained'> Go to the Hub </Button>
             </Typography>
+            <br/>
+        <ScoreBoard/>
           </Box>
         </Modal>
-      </Box>
-        <ScoreBoard/>
+      
         </>
     );
   }

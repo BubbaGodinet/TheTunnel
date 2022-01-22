@@ -17,17 +17,19 @@ export default function SearchContainer({searchAnchorEl, setSearchAnchorEl, hand
           <Popover
             id={id}
             open={open}
+            anchorReference="anchorPosition"
+            anchorPosition={{ top: 820, left: 5 }}
             anchorEl={searchAnchorEl}
             onClose={handleClose}
             anchorOrigin={{
-              vertical: 'bottom',
+              vertical: 'top',
               horizontal: 'left',
             }}
           >
-          <Box
+          <Box style={{backgroundColor: '#7f8087'}}
           sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
           >
-          <List>
+          <List style={{backgroundColor: '#7f8087', color: 'white'}}>
             {allUsers}
           </List>
           </Box>
