@@ -46,6 +46,8 @@ export default function LoginForm({loginAnchorEl, handleLoginClose, setUser}){
      <Popover
         id={id}
         open={open}
+        anchorReference="anchorPosition"
+        anchorPosition={{ top: 600, left: 675 }}
         anchorEl={loginAnchorEl}
         onClose={handleLoginClose}
         anchorOrigin={{

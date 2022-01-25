@@ -82,6 +82,7 @@ export default function FriendSearch(){
             <SearchIconWrapper>
             </SearchIconWrapper>
             <StyledInputBase
+            style={{color: 'gray'}}
               placeholder="Find Friends..."
               inputProps={{ 'aria-label': 'search' }}
             />

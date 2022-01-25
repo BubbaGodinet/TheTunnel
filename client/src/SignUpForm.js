@@ -51,6 +51,8 @@ export default function SignupForm({signUpAnchorEl, handleSignUpClose, setUser})
      <Popover
         id={id}
         open={open}
+        anchorReference="anchorPosition"
+        anchorPosition={{ top: 600, left: 400 }}
         anchorEl={signUpAnchorEl}
         onClose={handleSignUpClose}
         anchorOrigin={{

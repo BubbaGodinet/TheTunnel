@@ -33,12 +33,12 @@ export default function Friends(props){
     return (
         <div>
         <Divider/>
-        <ListItem style={{backgroundColor: '#7f8087'}} key={index} component="div" disablePadding>
+        <ListItem style={{backgroundColor: 'white'}} key={index} component="div" disablePadding>
             <ListItemButton> 
-                <ListItemText primary={username} secondary={`Highscore ${score}`}/>
+                <ListItemText style={{color: 'gray'}} primary={username} secondary={`Highscore ${score}`}/>
             </ListItemButton>
-            {/* <Button onClick={handleScoresClick} style={{paddingRight: '15px', color: '#F8E9FE'}}>Scores</Button> */}
-            <Button onClick={handleUnfriend} style={{paddingRight: '15px', color: '#F8E9FE'}}>Unfriend</Button>
+            {/* <Button onClick={handleScoresClick} style={{paddingRight: '15px', color: '#dd87dc'}}>Scores</Button> */}
+            <Button onClick={handleUnfriend} style={{paddingRight: '15px', color: '#dd87dc'}}>Unfriend</Button>
         </ListItem>
         <FriendScoreBoard handleClose={handleClose} scoreAnchorEl={scoreAnchorEl}/>
         </div>

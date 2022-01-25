@@ -25,7 +25,7 @@ export default function Text({ children, vAlign = 'center', hAlign = 'center', s
     <group {...props} scale={[0.1 * size, 0.1 * size, 0.1]}>
       <mesh ref={mesh}>
         <textGeometry args={[children, config]} />
-        <meshNormalMaterial />
+        <meshNormalMaterial/>
       </mesh>
     </group>
   )

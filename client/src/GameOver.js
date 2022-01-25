@@ -53,7 +53,7 @@ export default function GameOver() {
                 <br/>
                 <br/>
               <Button as={Link} to={`/game`} style={{textDecoration: 'none', backgroundColor: '#F8E9FE'}} variant='contained'> Play Again </Button>
-              <Button as={Link} to={`/start`} style={{textDecoration: 'none', backgroundColor: '#F8E9FE', marginLeft: '63px'}} variant='contained'> Go to the Hub </Button>
+              <Button as={Link} to={`/`} style={{textDecoration: 'none', backgroundColor: '#F8E9FE', marginLeft: '63px'}} variant='contained'> Go to the Hub </Button>
             </Typography>
             <br/>
         <ScoreBoard/>

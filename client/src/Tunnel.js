@@ -18,7 +18,7 @@ export default function Tunnel() {
       points.push(new THREE.Vector3(0, -3, 10000 * (i / 4)))
     return new THREE.CatmullRomCurve3(points)
   })
-  const texture = useLoader(THREE.TextureLoader, "./Stylized_Crystal.jpg")
+  const texture = useLoader(THREE.TextureLoader, "https://market-assets.fra1.cdn.digitaloceanspaces.com/market-assets/materials/normals/check_normal+y.jpg")
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
   texture.repeat.set(2000, 5);

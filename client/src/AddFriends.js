@@ -24,7 +24,7 @@ export default function AddFriends(props){
         <Divider/>
         <ListItem style={style} key={index} component="div" disablePadding>
             <ListItemButton> 
-                <ListItemText primary={username}/>
+                <ListItemText style={{color: 'gray'}}primary={username}/>
             </ListItemButton>
             <Button onClick={handleFriendsClick} style={{paddingRight: '15px', color: 'pink'}}>Add Friend</Button>
         </ListItem>

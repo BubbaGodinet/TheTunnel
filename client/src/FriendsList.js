@@ -47,12 +47,12 @@ export default function FriendsList(){
           <Box style={{backgroundColor: '#7f8087'}} 
           sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
           >
-          <List style={{backgroundColor: '#7f8087', color: 'white'}}  >
+          <List style={{backgroundColor: 'white', color: 'white'}}  >
             {allFriends}
           </List>
           </Box>
           </Popover>
-          <Button onClick={handleClick} variant='contained' style={{backgroundColor: '#F8E9FE', border: '1px solid #F8E9FE', textDecoration: 'none', position: 'absolute', bottom: '22px', left: '310px'}}>My Friends</Button>
+          <Button onClick={handleClick} variant='contained' style={{color: 'gray', backgroundColor: '#F8E9FE', border: '1px solid #F8E9FE', textDecoration: 'none', position: 'absolute', bottom: '22px', left: '310px'}}>My Friends</Button>
         </div>
       );
     }

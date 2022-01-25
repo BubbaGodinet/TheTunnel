@@ -29,7 +29,7 @@ export default function SearchContainer({searchAnchorEl, setSearchAnchorEl, hand
           <Box style={{backgroundColor: '#7f8087'}}
           sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
           >
-          <List style={{backgroundColor: '#7f8087', color: 'white'}}>
+          <List style={{backgroundColor: 'white', color: 'white'}}>
             {allUsers}
           </List>
           </Box>

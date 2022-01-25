@@ -13,6 +13,8 @@ import {ScoreContext} from './context/scoreState'
 import {UserScoresContext} from './context/userscoreState'
 import { useNavigate } from "react-router-dom";
 import Text from './Text'
+import * as THREE from 'three'
+import Lives from './Lives'
 // import {HitContext} from './context/hitState'
 // import HitPopover from './HitPopover'
 // import {Box} from 'drei'
@@ -21,24 +23,22 @@ let y
 export default function GamePage({user}) {
   const {userScores, setUserScores} = useContext(UserScoresContext)
   const {score, setScore} = useContext(ScoreContext)
+  const [lostLife1, setLostLife1] = useState(false)
+  const [lostLife2, setLostLife2] = useState(false)
+  const [lostLife3, setLostLife3] = useState(false)
   let navigate = useNavigate();
   // const {hit, setHit} = useContext(HitContext)
 
   const Ship = () => {
     const { viewport } = useThree()
     const group = useRef()
-    // const [ref] = useBox(() => ({mass:10}))
     const { nodes, materials } = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/low-poly-spaceship/model.gltf')
     useFrame(({ mouse }) => {
       x = (mouse.x * viewport.width) / 2
       y = (mouse.y * viewport.height) / 2
       group.current.position.set(x, y, 0)
-      // const contacted = cubeField.map(cube =>{ if(Math.sqrt(Math.pow(cube.props.position[0] - group.current.position.x, 2) + Math.pow(cube.props.position[1] - group.current.position.y, 2) + Math.pow(cube.props.position[2] - group.current.position.z,2)) < 5) {console.log('hit')}})
-      // if (contacted < 10000){console.log('hit')}
-      // console.log(group.current.position.x)
-      // group.current.rotation.set(-y, x, 0)
     })
-    // if( Math.sqrt(Math.pow(cube.props.position[0] - group.current.position.x, 2) + Math.pow(cube.props.position[1] - group.current.position.y, 2) + Math.pow(cube.props.position[2] - group.current.position.z +=0.4,2)) < 5) {console.log('hit')}
+   
    
     return (
       <group rotation={[0,9.45,0]} ref={group} dispose={null}>
@@ -52,33 +52,28 @@ export default function GamePage({user}) {
       </group>
     )
   }
-  
+
  
   let lives = 3
   const SpinningMesh = ({position, rotation, scale, args, color}) => {
-    // const [ref] = useBox(() => ({mass:10, position, args}))
     const mesh = useRef(null)
     let scores = 0
     
       useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.2))
       useFrame(() => {mesh.current.position.z += 0.9 });
       useFrame(() => scores += .5)
-      // useFrame(() => console.log(x,y))
-     
-    //   useFrame(() => 
-    //   if( mesh.current.position.x > window.innerWidth && mesh.current.position.x < 0 && mesh.current.position.y > window.innerHeight && mesh.current.position.y < 0 mesh.current.position.z > window.innerHeight && mesh.current.position.z < 0 ) {
-
-    // })
+  
       return (
       <mesh onPointerOver={(event) => {if (mesh.current.position.z <= 3 && mesh.current.position.z >= -20) {
         lives -= 1
         console.log('hit')
         console.log(lives)
-        if (lives === 0) {  
-        navigate('/gameover', {replace: true})
-        setScore(scores)
-        pause()
-        }
+        // if (lives === 0) {  
+        // navigate('/gameover', {replace: true})
+        // setScore(scores)
+        // start2()
+        // pause()
+        // }
       
       // fetch('/scores', {
       //   method: 'Post',
@@ -96,28 +91,26 @@ export default function GamePage({user}) {
      </mesh>
       )
     }
-  
+   
     const Mesh = ({position, rotation, scale, args, color}) => {
-      // const [ref] = useBox(() => ({mass:10, position, args}))
+      
       const mesh = useRef(null)
       let scores = 0
         useFrame(() => {mesh.current.position.z += 0.9 });
         useFrame(() => scores += .5)
-      //   useFrame(() => 
-      //   if( mesh.current.position.x > window.innerWidth && mesh.current.position.x < 0 && mesh.current.position.y > window.innerHeight && mesh.current.position.y < 0 mesh.current.position.z > window.innerHeight && mesh.current.position.z < 0 ) {
-  
-      // })
       // let hits = 0;
         return (
         <mesh onPointerOver={(event) => {if (mesh.current.position.z <= 3 && mesh.current.position.z >= -20) {
           lives -= 1
+          setLostLife1(true)
           console.log('hit')
           console.log(lives)
-          if (lives === 0) {  
-          navigate('/gameover', {replace: true})
-          setScore(scores)
-          pause()
-          }
+          // if (lives === 0) {  
+          // navigate('/gameover', {replace: true})
+          // setScore(scores)
+          // start2()
+          // pause()
+          // }
         // fetch('/scores', {
         //   method: 'Post',
         //   headers: {
@@ -146,20 +139,28 @@ export default function GamePage({user}) {
       cubes2.push(i)
     }
 
+    let cubes4 =[]
+    for (let i = 0; i < 700; i++) {
+      cubes4.push(i)
+    }
+
     let cubes3 =[]
     for (let i = 0; i < 1000; i++) {
       cubes3.push(i)
     }
 
-     const cubeField = cubes.map(cube => <Mesh color={Math.random() * 0xffffff} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 1600]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 3,  Math.random() + 3,  Math.random() + 3]}/>)
-     const cubeField2 = cubes2.map(cube => <Mesh color={Math.random() * 0xffffff} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 2900]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 3,  Math.random() + 3,  Math.random() + 3]}/>)
-     const cubeField3 = cubes.map(cube => <SpinningMesh color={Math.random() * 0xffffff} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 4200]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 3.5,  Math.random() + 3.5,  Math.random() + 3.5]}/>)
-     const cubeField4 = cubes2.map(cube => <SpinningMesh color={Math.random() * 0xffffff} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 5500]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 1.5,  Math.random() + 1.5,  Math.random() + 1.5]}/>)
-     const cubeField5 = cubes3.map(cube => <SpinningMesh color={Math.random() * 0xffffff} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 6800]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 1.5,  Math.random() + 1.5,  Math.random() + 1.5]}/>)
-     
+     const cubeField = cubes.map(cube => <Mesh color={Math.random() * 800-700} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 1600]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 3,  Math.random() + 3,  Math.random() + 3]}/>)
+     const cubeField2 = cubes2.map(cube => <Mesh color={Math.random() * 800-300} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 2900]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 3,  Math.random() + 3,  Math.random() + 3]}/>)
+     const cubeField3 = cubes3.map(cube => <Mesh color={Math.random() * 800-300} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 4200]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 3,  Math.random() + 3,  Math.random() + 3]}/>)
+     const cubeField8 = cubes.map(cube => <Mesh color={Math.random() * 10000-50} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 5500]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 5,  Math.random() + 5,  Math.random() + 5]}/>)
+     const cubeField4 = cubes.map(cube => <SpinningMesh color={Math.random() * 0xffffff} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 6800]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 3.5,  Math.random() + 3.5,  Math.random() + 3.5]}/>)
+     const cubeField5 = cubes2.map(cube => <SpinningMesh color={Math.random() * 0xffffff} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 8100]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 3.5,  Math.random() + 3.5,  Math.random() + 3.5]}/>)
+     const cubeField6 = cubes3.map(cube => <SpinningMesh color={Math.random() * 0xffffff} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 9400]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 2,  Math.random() + 2,  Math.random() + 2]}/>)
+     const cubeField7 = cubes.map(cube => <SpinningMesh color={Math.random() * 0xffffff} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 10700]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 5,  Math.random() + 5,  Math.random() + 5]}/>)
 
     
-      let audio = new Audio('/song.mp3')
+      let audio = new Audio('/CB2022.mp3')
+      let audio2 = new Audio('/gameover.wav')
       const start = () => {
         audio.play()
       }
@@ -168,11 +169,15 @@ export default function GamePage({user}) {
         audio.pause()
       }
 
+      const start2 = () => {
+        audio2.play()
+      }
+
      function CountDown() {
       const ref = useRef()
       useFrame(() => {ref.current.position.z += 0.5 });
       return (
-        <group onPointerOver={start} ref={ref}>
+        <group /*onPointerOver={start}*/ ref={ref}>
           <Text hAlign="right" position={[-6, 2, -265]} children="GO" />
           <Text hAlign="right" position={[-3, 2, -220]} children="1" />
           <Text hAlign="right" position={[-3, 2, -160]} children="2" />
@@ -180,15 +185,15 @@ export default function GamePage({user}) {
         </group>
       )
     }
-     
+    
+  
   return (
     <>
-    <Canvas style={{ background: "black" }}
+    <Canvas style={{ backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'cover',backgroundImage: "url(" + "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/12cbe8a4-f55c-4b40-85bb-d8e1405e7b84/d9oji4g-e98045e6-424f-40e6-bee0-42149b0ef1c0.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzEyY2JlOGE0LWY1NWMtNGI0MC04NWJiLWQ4ZTE0MDVlN2I4NFwvZDlvamk0Zy1lOTgwNDVlNi00MjRmLTQwZTYtYmVlMC00MjE0OWIwZWYxYzAuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.T9mA5yCUSLT2yOIGsTjOdDUiy24Xs7ZVzzKBC12JtXM" + ")"}}
     shadowMap
     colorManagement 
     camera={{position: [0,4,10], fov: 100}}
     >
-      {/* <perspectiveCamera makeDefault/> */}
       <ambientLight intensity={0.3} />
       <directionalLight 
       castShadow
@@ -204,9 +209,7 @@ export default function GamePage({user}) {
       />
       <pointLight position={[-10,0,-20]} intensity={0.5}/>
       <pointLight position={[0,-10,0]} intensity={1.5}/>
-      <Terrain/>
-      {/* <Stars/> */}
-      {/* <HitPopover setHit={setHit} hit={hit}/> */}
+      
       <group>
         <mesh 
         receiveShadow
@@ -218,11 +221,17 @@ export default function GamePage({user}) {
           <Tunnel/>
           <CountDown/>
           <Ship/>
+           <Lives position={[-.5, 0, 8.3]} scale={[.25, .25, .25]}/>
+           <Lives position={[0, 0, 8.3]} scale={[.25, .25, .25]}/>
+           <Lives position={[.5, 0, 8.3]} scale={[.25, .25, .25]}/>
           {cubeField}
           {cubeField2}
           {cubeField3}
           {cubeField4}
           {cubeField5}
+          {cubeField6}
+          {cubeField7}
+          {cubeField8}
         </Suspense>
       </group>
     </Canvas>
