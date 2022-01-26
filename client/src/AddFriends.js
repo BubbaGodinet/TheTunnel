@@ -3,8 +3,11 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
+import {MyFriendsContext} from './context/myFriendsState'
+import { useContext } from 'react'
 
 export default function AddFriends(props){
+    const {myFriends, setMyFriends} = useContext(MyFriendsContext)
     const { index, style, username, id} = props;
 
     function handleFriendsClick(e){
@@ -17,6 +20,8 @@ export default function AddFriends(props){
             },
             body: JSON.stringify({friendee_id: id})
         })
+        .then(response => response.json())
+        .then(friend => setMyFriends([friend, ...myFriends]))
     }
 
     return (

@@ -13,6 +13,11 @@ export default function GameOver() {
     const rootRef = React.useRef(null);
     const {score, setScore} = useContext(ScoreContext)
     console.log(score)
+
+    let clickAudio = new Audio('/sci-click.wav')
+    function handleClickAudio() {
+      clickAudio.play()
+    }
     return (
       <>
       
@@ -52,8 +57,8 @@ export default function GameOver() {
               Would you like to play again?
                 <br/>
                 <br/>
-              <Button as={Link} to={`/game`} style={{textDecoration: 'none', backgroundColor: '#F8E9FE'}} variant='contained'> Play Again </Button>
-              <Button as={Link} to={`/`} style={{textDecoration: 'none', backgroundColor: '#F8E9FE', marginLeft: '63px'}} variant='contained'> Go to the Hub </Button>
+              <Button onClick={handleClickAudio} as={Link} to={`/game`} style={{textDecoration: 'none', backgroundColor: '#F8E9FE'}} variant='contained'> Play Again </Button>
+              <Button onClick={handleClickAudio} as={Link} to={`/`} style={{textDecoration: 'none', backgroundColor: '#F8E9FE', marginLeft: '63px'}} variant='contained'> Go to the Hub </Button>
             </Typography>
             <br/>
         <ScoreBoard/>

@@ -4,12 +4,13 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 import FriendScoreBoard from './FriendScoreBoard'
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import {MyFriendsContext} from './context/myFriendsState'
 
 export default function Friends(props){
     const { index, username, id, score} = props;
     const [scoreAnchorEl, setScoreAnchorEl] = useState(null);
-
+    const {myFriends, setMyFriends} = useContext(MyFriendsContext)
     
     function handleUnfriend(){
         console.log('unfriend')
@@ -20,6 +21,10 @@ export default function Friends(props){
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({friendee_id: id})
+                })
+                .then(() => {
+                    const friendsFiltered = myFriends.filter(friend => friend.id !== id)
+                    setMyFriends(friendsFiltered)
                 })
             }
     const handleClose = () => {

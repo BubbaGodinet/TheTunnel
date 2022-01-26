@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import Text from './Text'
 import * as THREE from 'three'
 import Lives from './Lives'
+import Button from '@mui/material/Button';
 // import {HitContext} from './context/hitState'
 // import HitPopover from './HitPopover'
 // import {Box} from 'drei'
@@ -26,6 +27,7 @@ export default function GamePage({user}) {
   const [lostLife1, setLostLife1] = useState(false)
   const [lostLife2, setLostLife2] = useState(false)
   const [lostLife3, setLostLife3] = useState(false)
+  
   let navigate = useNavigate();
   // const {hit, setHit} = useContext(HitContext)
 
@@ -66,25 +68,27 @@ export default function GamePage({user}) {
       return (
       <mesh onPointerOver={(event) => {if (mesh.current.position.z <= 3 && mesh.current.position.z >= -20) {
         lives -= 1
-        console.log('hit')
-        console.log(lives)
-        // if (lives === 0) {  
-        // navigate('/gameover', {replace: true})
-        // setScore(scores)
-        // start2()
-        // pause()
-        // }
-      
-      // fetch('/scores', {
-      //   method: 'Post',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({score: scores, user_id: user.id})
-      // })
-    
-      // .then((r) => r.json())
-      // .then((newScore) => setUserScores([...userScores, newScore]))
+        if(lives >= 0) {
+          explosion()
+          }
+        if (lives === 1) {
+          critical()
+        } 
+         if (lives < 0) {  
+        navigate('/gameover', {replace: true})
+        setScore(scores)
+        start2()
+        pause()
+        fetch('/scores', {
+          method: 'Post',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({score: scores, user_id: user.id})
+        })
+        .then((r) => r.json())
+        .then((newScore) => setUserScores([...userScores, newScore]))
+        }
       }}} castShadow position={position} rotation={rotation} scale={scale} ref={mesh} >
             <boxBufferGeometry args={args} attach='geometry' />
             <MeshWobbleMaterial attach='material' color={color} />
@@ -102,24 +106,27 @@ export default function GamePage({user}) {
         return (
         <mesh onPointerOver={(event) => {if (mesh.current.position.z <= 3 && mesh.current.position.z >= -20) {
           lives -= 1
-          setLostLife1(true)
-          console.log('hit')
-          console.log(lives)
-          // if (lives === 0) {  
-          // navigate('/gameover', {replace: true})
-          // setScore(scores)
-          // start2()
-          // pause()
-          // }
-        // fetch('/scores', {
-        //   method: 'Post',
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
-        //   body: JSON.stringify({score: scores, user_id: user.id})
-        // })
-        // .then((r) => r.json())
-        // .then((newScore) => setUserScores([...userScores, newScore]))
+          if(lives >= 0) {
+          explosion()
+          }
+          if (lives === 1) {
+            critical()
+          } 
+           if (lives < 0) {  
+          navigate('/gameover', {replace: true})
+          setScore(scores)
+          start2()
+          pause()
+          fetch('/scores', {
+            method: 'Post',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({score: scores, user_id: user.id})
+          })
+          .then((r) => r.json())
+          .then((newScore) => setUserScores([...userScores, newScore]))
+          }
         }}} castShadow position={position} rotation={rotation} scale={scale} ref={mesh} >
               <boxBufferGeometry args={args} attach='geometry' />
               <MeshWobbleMaterial attach='material' color={color} />
@@ -161,6 +168,9 @@ export default function GamePage({user}) {
     
       let audio = new Audio('/CB2022.mp3')
       let audio2 = new Audio('/gameover.wav')
+      let audio3 = new Audio('/arcade-explosion.wav')
+      let audio4 = new Audio('/critical.mp3')
+
       const start = () => {
         audio.play()
       }
@@ -173,19 +183,29 @@ export default function GamePage({user}) {
         audio2.play()
       }
 
+      const explosion = () => {
+        audio3.play()
+      }
+
+      const critical = () => {
+        audio4.play()
+      }
+
      function CountDown() {
       const ref = useRef()
       useFrame(() => {ref.current.position.z += 0.5 });
       return (
-        <group /*onPointerOver={start}*/ ref={ref}>
+        <group onPointerOver={start} ref={ref}>
           <Text hAlign="right" position={[-6, 2, -265]} children="GO" />
-          <Text hAlign="right" position={[-3, 2, -220]} children="1" />
+          <Text hAlign="right" position={[-2.5, 2, -220]} children="1" />
           <Text hAlign="right" position={[-3, 2, -160]} children="2" />
           <Text hAlign="right" position={[-3, 2, -100]} children="3" />
         </group>
       )
     }
-    
+    //  const livesArr = [<Lives position={[-.5, 0, 8.3]} scale={[.25, .25, .25]}/>,
+    //  <Lives position={[0, 0, 8.3]} scale={[.25, .25, .25]}/>,
+    //  <Lives position={[.5, 0, 8.3]} scale={[.25, .25, .25]}/>]
   
   return (
     <>
@@ -221,9 +241,9 @@ export default function GamePage({user}) {
           <Tunnel/>
           <CountDown/>
           <Ship/>
-           <Lives position={[-.5, 0, 8.3]} scale={[.25, .25, .25]}/>
-           <Lives position={[0, 0, 8.3]} scale={[.25, .25, .25]}/>
-           <Lives position={[.5, 0, 8.3]} scale={[.25, .25, .25]}/>
+          {/* <Lives position={[-.5, 0, 8.3]} scale={[.25, .25, .25]}/>
+          <Lives position={[0, 0, 8.3]} scale={[.25, .25, .25]}/>
+          <Lives position={[.5, 0, 8.3]} scale={[.25, .25, .25]}/> */}
           {cubeField}
           {cubeField2}
           {cubeField3}

@@ -7,10 +7,12 @@ import { BrowserRouter } from 'react-router-dom';
 import { ScoreProvider } from './context/scoreState'
 import { UserScoresProvider } from './context/userscoreState'
 import { HitProvider } from './context/hitState'
+import { MyFriendsProvider } from './context/myFriendsState'
 
 
 ReactDOM.render(
     <HitProvider>
+    <MyFriendsProvider>
     <ScoreProvider>
     <UserScoresProvider>
     <BrowserRouter>
@@ -18,6 +20,7 @@ ReactDOM.render(
     </BrowserRouter>
     </UserScoresProvider>
     </ScoreProvider>
+    </MyFriendsProvider>
     </HitProvider>,
   document.getElementById('root')
 );

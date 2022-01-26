@@ -8,7 +8,6 @@ import {Physics, useBox} from '@react-three/cannon'
 
 export default function Enemies() {
    const SpinningMesh = ({position, rotation, scale, args, color}) => {
-      // const [ref] = useBox(() => ({mass:10, position, args}))
       const mesh = useRef(null)
         useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.2))
         useFrame(() => {mesh.current.position.z += 0.4 });

@@ -11,7 +11,7 @@ import { useGLTF,
 export default function Lives(props) {
   const group = useRef()
   const { nodes, materials } = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/heart/model.gltf')
-  useFrame(() => {group.current.position.z += 0.0 });
+ 
   return (
     <group ref={group} {...props} dispose={null}>
         <mesh geometry={nodes.heart_teamRed.geometry} material={materials['Red.015']} rotation={[.5,0,0]} />

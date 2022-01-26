@@ -11,7 +11,7 @@ class FriendsController < ApplicationController
 
     def destroy 
         # @current_user.friendees.destroy
-        @current_user.friendees.delete(User.find(params[:id]))
+        @current_user.friendees.destroy(User.find(params[:id]))
     end
 
     private 

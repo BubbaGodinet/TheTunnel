@@ -4,13 +4,21 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import Friends from './Friends'
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useContext} from 'react'
+import {MyFriendsContext} from './context/myFriendsState'
+
 
 export default function FriendsList(){
-    const [myFriends, setMyFriends] = useState([])
+    const {myFriends, setMyFriends} = useContext(MyFriendsContext)
     const [anchorEl, setAnchorEl] = useState(null);
 
+      let clickAudio = new Audio('/sci-click.wav')
+      const playClick = () => {
+        clickAudio.play()
+      }
+      
     const handleClick = (event) => {
+      playClick();
       setAnchorEl(event.currentTarget);
     };
   
