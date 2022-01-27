@@ -42,7 +42,7 @@ function handleSignUpClick(event){
       {/* <Route path='/start' element={<StartPage setUser={setUser} user={user} />}/> */}
       <Route path='/scoreBoard' element={<ScoreBoard />}/>
       <Route path='/game' element={<GamePage user={user} />}/>
-      <Route path='/' element={user ? <StartPage /> : <LoginSignUpPage handleSignUpClick={handleSignUpClick} handleLoginClick={handleLoginClick}  setLoginAnchorEl={setLoginAnchorEl} setSignUpAnchorEl={setSignUpAnchorEl} loginAnchorEl={loginAnchorEl} signUpAnchorEl={signUpAnchorEl} setUser={setUser} />}/>
+      <Route path='/' element={user ? <StartPage setUser={setUser}/> : <LoginSignUpPage handleSignUpClick={handleSignUpClick} handleLoginClick={handleLoginClick}  setLoginAnchorEl={setLoginAnchorEl} setSignUpAnchorEl={setSignUpAnchorEl} loginAnchorEl={loginAnchorEl} signUpAnchorEl={signUpAnchorEl} setUser={setUser} />}/>
     </Routes>
     </>
   )

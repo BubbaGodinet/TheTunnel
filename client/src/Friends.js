@@ -15,7 +15,7 @@ export default function Friends(props){
     function handleUnfriend(){
         console.log('unfriend')
         console.log(id)
-        fetch('/friends', {
+        fetch(`/friends/${id}`, {
                 method: 'DELETE',
                 headers: {
                         'Content-Type': 'application/json'
@@ -23,7 +23,7 @@ export default function Friends(props){
                     body: JSON.stringify({friendee_id: id})
                 })
                 .then(() => {
-                    const friendsFiltered = myFriends.filter(friend => friend.id !== id)
+                    const friendsFiltered = myFriends.filter(friend => friend.friendee.id !== id)
                     setMyFriends(friendsFiltered)
                 })
             }

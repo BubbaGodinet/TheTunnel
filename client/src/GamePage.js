@@ -147,19 +147,19 @@ export default function GamePage({user}) {
     }
 
     let cubes4 =[]
-    for (let i = 0; i < 700; i++) {
+    for (let i = 0; i < 1000; i++) {
       cubes4.push(i)
     }
 
     let cubes3 =[]
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < 700; i++) {
       cubes3.push(i)
     }
 
-     const cubeField = cubes.map(cube => <Mesh color={Math.random() * 800-700} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 1600]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 3,  Math.random() + 3,  Math.random() + 3]}/>)
-     const cubeField2 = cubes2.map(cube => <Mesh color={Math.random() * 800-300} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 2900]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 3,  Math.random() + 3,  Math.random() + 3]}/>)
-     const cubeField3 = cubes3.map(cube => <Mesh color={Math.random() * 800-300} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 4200]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 3,  Math.random() + 3,  Math.random() + 3]}/>)
-     const cubeField8 = cubes.map(cube => <Mesh color={Math.random() * 10000-50} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 5500]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 5,  Math.random() + 5,  Math.random() + 5]}/>)
+     const cubeField = cubes.map(cube => <Mesh color={Math.random() * 800-300} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 1600]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 3,  Math.random() + 3,  Math.random() + 3]}/>)
+     const cubeField2 = cubes2.map(cube => <Mesh color={Math.random() * 100000-300} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 2900]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 3,  Math.random() + 3,  Math.random() + 3]}/>)
+     const cubeField3 = cubes3.map(cube => <Mesh color={Math.random() * 10000000-0} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 4200]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 3,  Math.random() + 3,  Math.random() + 3]}/>)
+     const cubeField8 = cubes.map(cube => <Mesh color={Math.random() * 0xffffff} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 5500]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 5,  Math.random() + 5,  Math.random() + 5]}/>)
      const cubeField4 = cubes.map(cube => <SpinningMesh color={Math.random() * 0xffffff} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 6800]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 3.5,  Math.random() + 3.5,  Math.random() + 3.5]}/>)
      const cubeField5 = cubes2.map(cube => <SpinningMesh color={Math.random() * 0xffffff} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 8100]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 3.5,  Math.random() + 3.5,  Math.random() + 3.5]}/>)
      const cubeField6 = cubes3.map(cube => <SpinningMesh color={Math.random() * 0xffffff} position={[Math.random() * 50 - 25, Math.random() * 50 - 25, Math.random() * 1000 - 9400]} rotation={[ Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI]} scale={[ Math.random() + 2,  Math.random() + 2,  Math.random() + 2]}/>)
@@ -209,7 +209,7 @@ export default function GamePage({user}) {
   
   return (
     <>
-    <Canvas style={{ backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'cover',backgroundImage: "url(" + "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/12cbe8a4-f55c-4b40-85bb-d8e1405e7b84/d9oji4g-e98045e6-424f-40e6-bee0-42149b0ef1c0.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzEyY2JlOGE0LWY1NWMtNGI0MC04NWJiLWQ4ZTE0MDVlN2I4NFwvZDlvamk0Zy1lOTgwNDVlNi00MjRmLTQwZTYtYmVlMC00MjE0OWIwZWYxYzAuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.T9mA5yCUSLT2yOIGsTjOdDUiy24Xs7ZVzzKBC12JtXM" + ")"}}
+    <Canvas style={{ backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'cover',backgroundImage: "url('/loading.gif')"}}
     shadowMap
     colorManagement 
     camera={{position: [0,4,10], fov: 100}}

@@ -33,7 +33,7 @@ export default function FriendsList(){
       })
     },[])
 
-      const allFriends = myFriends.map(friend => <Friends id={friend.id} username={friend.friendee.username} score={friend.friendee.scores.map(score=> score.score).sort((a,b)=> b-a)[0]} />)
+      const allFriends = myFriends.map(friend => <Friends id={friend.friendee.id} username={friend.friendee.username} score={friend.friendee.scores.map(score=> score.score).sort((a,b)=> b-a)[0]} />)
 
       const open = Boolean(anchorEl);
       const id = open ? 'simple-popover' : undefined;
