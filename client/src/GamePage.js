@@ -24,9 +24,9 @@ let y
 export default function GamePage({user}) {
   const {userScores, setUserScores} = useContext(UserScoresContext)
   const {score, setScore} = useContext(ScoreContext)
-  const [lostLife1, setLostLife1] = useState(false)
-  const [lostLife2, setLostLife2] = useState(false)
-  const [lostLife3, setLostLife3] = useState(false)
+  // const [lostLife1, setLostLife1] = useState(false)
+  // const [lostLife2, setLostLife2] = useState(false)
+  // const [lostLife3, setLostLife3] = useState(false)
   
   let navigate = useNavigate();
   // const {hit, setHit} = useContext(HitContext)
@@ -36,8 +36,8 @@ export default function GamePage({user}) {
     const group = useRef()
     const { nodes, materials } = useGLTF('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/low-poly-spaceship/model.gltf')
     useFrame(({ mouse }) => {
-      x = (mouse.x * viewport.width) / 2
-      y = (mouse.y * viewport.height) / 2
+      x = (mouse.x * viewport.width) / 2.2
+      y = (mouse.y * viewport.height) / 2.2
       group.current.position.set(x, y, 0)
     })
    
@@ -195,7 +195,7 @@ export default function GamePage({user}) {
       const ref = useRef()
       useFrame(() => {ref.current.position.z += 0.5 });
       return (
-        <group onPointerOver={start} ref={ref}>
+        <group /*onPointerOver={start}*/ ref={ref}>
           <Text hAlign="right" position={[-6, 2, -265]} children="GO" />
           <Text hAlign="right" position={[-2.5, 2, -220]} children="1" />
           <Text hAlign="right" position={[-3, 2, -160]} children="2" />

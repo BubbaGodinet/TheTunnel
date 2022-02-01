@@ -15,7 +15,7 @@ export default function LoginSignupPage({handleLoginClick, handleSignUpClick, se
       const handleSignUpClose = () => {
         setSignUpAnchorEl(null);
       };
-
+      
     return(
         <div>
          <img src={logo} width="500" height="500" style={{display:'block', margin:'0 auto', textAlign:'center'}}/>

@@ -10,6 +10,7 @@ export default function StartPage({setUser, user}) {
 
     function handleLogout(e) {
         console.log(e)
+        clickAudio.play()
         fetch("/logout", {method: "DELETE"})
         .then((res) => {
           if (res.ok) {
@@ -17,7 +18,7 @@ export default function StartPage({setUser, user}) {
           }
         })
       }
-
+      
       let clickAudio = new Audio('/sci-click.wav')
       function handleClickAudio() {
         clickAudio.play()

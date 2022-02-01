@@ -25,16 +25,17 @@ function App() {
   }, [])
 
   function handleLoginClick(event){
-    console.log('Login')
+    clickAudio.play()
     setLoginAnchorEl(event.currentTarget)
 }
 
 function handleSignUpClick(event){
+    clickAudio.play()
     setSignUpAnchorEl(event.currentTarget)
-    console.log('Signup')
 }
 
 
+      let clickAudio = new Audio('/sci-click.wav')
   return (
     <>
     <Routes>
