@@ -195,7 +195,7 @@ export default function GamePage({user}) {
       const ref = useRef()
       useFrame(() => {ref.current.position.z += 0.5 });
       return (
-        <group /*onPointerOver={start}*/ ref={ref}>
+        <group onPointerOver={start} ref={ref}>
           <Text hAlign="right" position={[-6, 2, -265]} children="GO" />
           <Text hAlign="right" position={[-2.5, 2, -220]} children="1" />
           <Text hAlign="right" position={[-3, 2, -160]} children="2" />
